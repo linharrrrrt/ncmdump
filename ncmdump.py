@@ -132,16 +132,24 @@ def dump(file_path):
     audio['album'] = meta_data['album']
     audio['artist'] = '/'.join([artist[0] for artist in meta_data['artist']])
     audio.save()
-
+def get_filelist(path):
+    filename_list =[]
+    for root,dirs,files in os.walk(path):
+        for i in files:
+            if '.ncm' in i:
+                filename_list.append(root+"\\"+i)
+    return filename_list
+    
 if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1:
-        files = sys.argv[1:]
+        foldername = sys.argv[1]
+        files=get_filelist(foldername)
     else:
         files = [file_name for file_name in os.listdir('.') if os.path.splitext(file_name)[-1] == '.ncm']
 
     if not files:
-        print('please input file path!')
+        print('please put ncm file to this folder or input folder path! for example : python ncmdump.py \"D:CloudMusic\" ')
         
     for file_name in files:
         try:
