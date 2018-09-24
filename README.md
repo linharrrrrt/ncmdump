@@ -11,9 +11,9 @@ pip(3) install pycryptodome mutagen
 
 ## 使用
 
-指定ncm文件
+ncm文件所在目录
 ```
-python(3) ncmdump.py [files ...]
+python(3) ncmdump.py "folder path"
 ```
 工作目录下所有ncm文件
 ```
